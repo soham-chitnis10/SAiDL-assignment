@@ -23,7 +23,6 @@ class Gaussian_Policy(nn.Module):
 
         self.action_space = action_space
         num_outputs = action_space.shape[0] # the number of output actions
-
         self.linear = nn.Linear(num_inputs, hidden_size)
         self.mean = nn.Linear(hidden_size, num_outputs)
         self.log_std = nn.Linear(hidden_size, num_outputs)

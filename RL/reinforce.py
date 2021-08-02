@@ -9,18 +9,18 @@ import torch.optim as optim
 from torch.distributions import Normal
 
 
+
 class REINFORCE:
     '''
     Implementation of the basic online reinforce algorithm for Gaussian policies.
     '''
 
-    def __init__(self, num_inputs, hidden_size, action_space, lr_pi = 3e-4,gamma = 0.99, train_v_iters = 1):
+    def __init__(self, num_inputs, hidden_size, action_space, lr_pi = 3e-4,gamma = 0.99):
 
         self.gamma = gamma
         self.action_space = action_space
         self.policy = Gaussian_Policy(num_inputs, hidden_size, action_space)
         self.policy_optimizer = optim.Adam(self.policy.parameters(), lr = lr_pi)
-        self.train_v_iters = train_v_iters # how many times you want to run update loop.
 
 
     def select_action(self,state):

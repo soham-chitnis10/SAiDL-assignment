@@ -11,6 +11,7 @@ LOG_SIG_MAX = 2
 LOG_SIG_MIN = -20
 
 
+
 class Gaussian_Policy(nn.Module):
     '''
     Gaussian policy that consists of a neural network with 1 hidden layer that

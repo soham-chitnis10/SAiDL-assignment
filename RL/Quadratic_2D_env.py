@@ -7,13 +7,13 @@ import time
 
 
 class QuadraticEnv(Env):
-    def __init__(self):
-        self.a = 1
-        self.b = 4
-        self.c = 0
-        self.d = 0
-        self.e = 0
-        self.f = 0
+    def __init__(self,a,b,c,d,e,f):
+        self.a = a
+        self.b = b
+        self.c = c
+        self.d = d
+        self.e = e
+        self.f = f
         self.x_init = random.uniform(-4,4)
         self.y_init = random.uniform(-4,4)
         self.x = self.x_init
@@ -34,9 +34,9 @@ class QuadraticEnv(Env):
         self.state[0]-= action[0][0]
         self.state[1]-= action[0][1]
         reward = self.reward()
-        if self.state[0]<0.1 and self.state[1]<0.1 :
+        if self.state[0]<0.05 and self.state[1]<0.05 :
             done = True
-        elif (self.end - self.start) >= 120:
+        elif (self.end - self.start) >= 180:
             done = True
 
         return self.state,reward,done
@@ -54,8 +54,6 @@ class QuadraticEnv(Env):
         self.start = time.time()
     def end_time(self):
         self.end = time.time()
-env = QuadraticEnv()
-print(env.observation_space.shape[0])
 # EPISODES =10
 # for eps in range(EPISODES):
 #     obs = env.reset()

@@ -15,7 +15,7 @@ import gym
 def main():
 
     # create env
-    env = QuadraticEnv()
+    env = QuadraticEnv(1,4,0,0,0,0)
     env.seed(456)
     torch.manual_seed(456)
     np.random.seed(456)
@@ -34,7 +34,7 @@ def main():
     
 
     # start of experiment: Keep looping until desired amount of episodes reached
-    max_episodes = 100
+    max_episodes = 400
     total_episodes = 0 # keep track of amount of episodes that we have done
     max_reward = 0
     max_reward_ep = 0
@@ -60,6 +60,7 @@ def main():
             max_reward_ep = total_episodes
 
         total_episodes += 1
+        policy_loss = policy.train(trajectory)
     
     print(f'Max Reward is {max_reward} occured on episode {max_reward_ep}')
 

@@ -11,11 +11,10 @@ from torch.distributions import Normal
 from Quadratic_2D_env import QuadraticEnv
 import gym
 
-
 def main():
 
     # create env
-    env = QuadraticEnv(1,4,0,0,0,0)
+    env = QuadraticEnv()
     env.seed(456)
     torch.manual_seed(456)
     np.random.seed(456)
@@ -34,7 +33,7 @@ def main():
     
 
     # start of experiment: Keep looping until desired amount of episodes reached
-    max_episodes = 400
+    max_episodes = 10
     total_episodes = 0 # keep track of amount of episodes that we have done
     max_reward = 0
     max_reward_ep = 0
@@ -54,7 +53,7 @@ def main():
             obs = next_state
             episode_reward += reward
             env.end_time()
-        print(f'Episode: {total_episodes} Reward: {episode_reward}')
+        print(f'Episode: {total_episodes} Reward: {episode_reward} function: {env.a}x^2 + {env.b}y^2 + {env.c}xy + {env.d}x + {env.e}y + {env.f} x:{env.state[0]} y:{env.state[1]} x_min:{env.x_min} y_min:{env.y_min}')
         if episode_reward > max_reward:
             max_reward = episode_reward
             max_reward_ep = total_episodes

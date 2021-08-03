@@ -9,7 +9,6 @@ import torch.optim as optim
 from torch.distributions import Normal
 
 
-
 class REINFORCE:
     '''
     Implementation of the basic online reinforce algorithm for Gaussian policies.
@@ -64,11 +63,12 @@ class REINFORCE:
             R = r + self.gamma * R
             returns.insert(0, R)
 
-        returns = torch.tensor(returns)
+        returns = torch.tensor(returns).cuda()
 
         
         policy_loss = []
         for log_prob, R in zip(log_probs, returns):
+            log_prob = log_prob.cuda()
             policy_loss.append( - log_prob * R)
 
 

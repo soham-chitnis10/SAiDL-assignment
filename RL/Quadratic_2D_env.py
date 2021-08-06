@@ -68,7 +68,9 @@ class QuadraticEnv(Env):
         reward = 1/dist
         return reward
     def reward_new(self,action):
-        reward = np.exp(action[0][0]/(-(self.x_min - self.state[0]) - 1e-9)) + np.exp(action[0][1]/(-(self.y_min - self.state[1]) - 1e-9))
+        reward = np.exp(action[0][0]*(-(self.x_min - self.state[0]))) + np.exp(action[0][1]*(-(self.y_min - self.state[1])))
+        while reward > 1e+17:
+          reward /= 1e+17
         return reward
     def start_time(self):
         self.start = time.time()

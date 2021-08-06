@@ -37,7 +37,7 @@ def main():
     total_episodes = 0 # keep track of amount of episodes that we have done
     max_reward = 0
     max_reward_ep = 0
-    last_reward = []
+    reward_list = []
     successful_episodes = []
     while total_episodes < max_episodes:
 
@@ -52,7 +52,7 @@ def main():
             trajectory.append([obs, action, ln_prob, reward, next_state, done])
             obs = next_state
             episode_reward += reward
-        last_reward.append(env.reward())
+        reward_list.append(env.reward())
         print(f'Episode: {total_episodes} Reward: {episode_reward} function: {env.a}x^2 + {env.b}y^2 + {env.c}xy + {env.d}x + {env.e}y + {env.f} x:{env.state[0]} y:{env.state[1]} x_min:{env.x_min} y_min:{env.y_min}')
         if episode_reward > max_reward:
             max_reward = episode_reward
@@ -64,7 +64,7 @@ def main():
     
     print(f'Max Reward is {max_reward} occured on episode {max_reward_ep}')
     eps = [ep for ep in range(1,max_episodes+1)]
-    plt.plot(eps,last_reward)
+    plt.plot(eps,reward_list)
     plt.show()
     print('Successful Episodes:')
     print(successful_episodes)

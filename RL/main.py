@@ -1,4 +1,4 @@
-import argparse
+import matplotlib.pyplot as plt
 import torch
 from torch.autograd import Variable
 import torch.autograd as autograd
@@ -12,23 +12,6 @@ from Quadratic_2D_env import QuadraticEnv
 import gym
 
 def main():
-
-    avg_reward /= eval_episodes
-    print("the average reward is: {0}".format(avg_reward))
-    #return avg_reward
-
-def render_policy(policy,env):
-    '''
-        Function to see the policy in action
-    '''
-    obs = env.reset()
-    done = False
-    while not done:
-        action,_,_,_ = policy.select_action(np.array(obs))
-        obs, reward, done, _ = env.step(action)
-
-
-def main(args):
 
     # create env
     env = QuadraticEnv()
@@ -50,18 +33,18 @@ def main(args):
     
 
     # start of experiment: Keep looping until desired amount of episodes reached
-    max_episodes = 10
+    max_episodes = 1000
     total_episodes = 0 # keep track of amount of episodes that we have done
     max_reward = 0
     max_reward_ep = 0
+    last_reward = []
+    successful_episodes = []
     while total_episodes < max_episodes:
 
         obs = env.reset()
         done = False
         trajectory = [] # trajectory info for reinforce update
         episode_reward = 0 # keep track of rewards per episode
-        env.start_time()
-        env.end_time()
 
         while not done:
             action, ln_prob = policy.select_action(np.array(obs))
@@ -69,16 +52,23 @@ def main(args):
             trajectory.append([obs, action, ln_prob, reward, next_state, done])
             obs = next_state
             episode_reward += reward
-            env.end_time()
+        last_reward.append(env.reward())
         print(f'Episode: {total_episodes} Reward: {episode_reward} function: {env.a}x^2 + {env.b}y^2 + {env.c}xy + {env.d}x + {env.e}y + {env.f} x:{env.state[0]} y:{env.state[1]} x_min:{env.x_min} y_min:{env.y_min}')
         if episode_reward > max_reward:
             max_reward = episode_reward
             max_reward_ep = total_episodes
-
+        if abs(env.state[0]-env.x_min)<0.1 and abs(env.state[1]-env.y_min)<0.1 :
+            successful_episodes.append(total_episodes)
         total_episodes += 1
         policy_loss = policy.train(trajectory)
     
     print(f'Max Reward is {max_reward} occured on episode {max_reward_ep}')
+    eps = [ep for ep in range(1,max_episodes+1)]
+    plt.plot(eps,last_reward)
+    plt.show()
+    print('Successful Episodes:')
+    print(successful_episodes)
+
 
 
 if __name__ == '__main__':

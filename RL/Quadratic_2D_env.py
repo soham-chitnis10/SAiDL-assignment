@@ -3,50 +3,74 @@ from gym.utils import seeding
 from gym.spaces import Box
 import numpy as np
 import random
+import time
+
 
 
 class QuadraticEnv(Env):
     def __init__(self):
-        self.a = 1
-        self.b = 4
-        self.c = 0
-        self.d = 0
-        self.e = 0
-        self.f = 0
-        self.x_init = random.uniform(-4,4)
-        self.y_init = random.uniform(-4,4)
-        self.x = self.x_init
-        self.y = self.y_init
-        self.x_min = 0
-        self.y_min = 0
-        self.state = [self.x,self.y,self.a,self.b,self.c,self.d,self.e,self.f]
-        self.action_space = Box(low=-1, high=1, shape=(2,))
-        self.low_state = np.array([self.x_init-5,self.y_init-5,self.a,self.b,self.c,self.d,self.e,self.f])
-        self.high_state = np.array([self.x_init+5,self.y_init+5,self.a,self.b,self.c,self.d,self.e,self.f])
-        self.observation_space = Box(low=self.low_state, high=self.high_state)
         self.seed()
+        self.a = random.uniform(0,10)
+        self.b = random.uniform(0,10)
+        self.c = random.uniform(-10,10)
+        self.d = random.uniform(-10,10)
+        self.e = random.uniform(-10,10)
+        self.f = random.uniform(-10,10)
+        self.x = random.uniform(-4,4)
+        self.y = random.uniform(-4,4)
+        self.state = np.array([self.x,self.y,self.a,self.b,self.c,self.d,self.e,self.f])
+        self.action_space = Box(low=-1, high=1, shape=(2,))
+        self.low_state = np.array([random.uniform(-4,4)-5,random.uniform(-4,4)-5,self.a,self.b,self.c,self.d,self.e,self.f],dtype=np.float32)
+        self.high_state = np.array([random.uniform(-4,4)+5,random.uniform(-4,4)+5,self.a,self.b,self.c,self.d,self.e,self.f],dtype=np.float32)
+        self.observation_space = Box(low=self.low_state, high=self.high_state)
+        self.steps = 0
+        self.set_minima()
+    def set_minima(self):
+
+        det = 4 * self.a * self.b - self.c * self.c
+        while det == 0:
+            self.reset()
+            det = 4 * self.a * self.b - self.c * self.c
+        
+        self.x_min = (-2 * self.b * self.d + self.c * self.e)/det
+        self.y_min = (self.c * self.d - 2 * self.a * self.e)/det   
     def seed(self,seed = None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
     def step(self,action):
-        self.state[0]-= action[0]
-        self.state[1]-= action[1]
-        reward = self.reward()
-        return reward,False
+        done = False
+        reward = self.reward_new(action)
+        self.state[0]-= action[0][0]
+        self.state[1]-= action[0][1]
+        self.steps += 1
+        if abs(self.state[0]-self.x_min)<0.1 and abs(self.state[1]-self.y_min)<0.1 :
+            done = True
+        elif self.steps >= 200:
+            done = True
+
+        return self.state,reward,done
     def render(self):
         pass
     def reset(self):
-        self.state =np.array([random.uniform(-4,4),random.uniform(-4,4),self.a,self.b,self.c,self.d,self.e,self.f])
+        self.a = random.uniform(0,10)
+        self.b = random.uniform(0,10)
+        self.c = random.uniform(-10,10)
+        self.d = random.uniform(-10,10)
+        self.e = random.uniform(-10,10)
+        self.f = random.uniform(-10,10)
+        self.set_minima()
+        self.state = np.array([random.uniform(-4,4),random.uniform(-4,4),self.a,self.b,self.c,self.d,self.e,self.f])
+        self.steps = 0
+        return self.state
     def reward(self):
         state = self.state
         dist = np.sqrt((state[0]-self.x_min)**2 + (state[1]-self.y_min)**2)
         reward = 1/dist
         return reward
-    def _get_obs(self):
-        pass
-# env = QuadraticEnv()
-# EPISODES =10
-# for eps in range(EPISODES):
-#     env.reset()
-#     print(f'Episode: {eps}')
-#     env.step()
+    def reward_new(self,action):
+        reward = np.exp(action[0][0]/(-(self.x_min - self.state[0]) - 1e-9)) + np.exp(action[0][1]/(-(self.y_min - self.state[1]) - 1e-9))
+        return reward
+    def start_time(self):
+        self.start = time.time()
+    def end_time(self):
+        self.end = time.time()

@@ -13,6 +13,23 @@ import gym
 
 def main():
 
+    avg_reward /= eval_episodes
+    print("the average reward is: {0}".format(avg_reward))
+    #return avg_reward
+
+def render_policy(policy,env):
+    '''
+        Function to see the policy in action
+    '''
+    obs = env.reset()
+    done = False
+    while not done:
+        action,_,_,_ = policy.select_action(np.array(obs))
+        obs, reward, done, _ = env.step(action)
+
+
+def main(args):
+
     # create env
     env = QuadraticEnv()
     env.seed(456)

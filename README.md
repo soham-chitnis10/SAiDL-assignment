@@ -14,8 +14,8 @@ using policy gradient with Gaussian Distribution.
 Total three reward functions were implemented:
 
 1. Inverse of the distance from the minima of the current state which only depends on the state.
-2. Exponent of the sum of the product of the difference of state from the minima and action along that directions. The Reward function is ![alt text](https://raw.githubusercontent.com/soham-chitnis10/SAiDL-assignment/main/.github/images/reward_func_2.jpg)
-3. The reward function is given by ![alt_text](https://raw.githubusercontent.com/soham-chitnis10/SAiDL-assignment/main/.github/images/reward_func_3.jpg)
+2. Exponent of the sum of the product of the difference of state from the minima and action along that directions. The Reward function is ![alt text](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/.github/images/reward_func_2.jpg)
+3. The reward function is given by ![alt_text](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/.github/images/reward_func_3.jpg)
 
 To run the environment and agent run the ```main.py``` which can be found [here](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/RL/main.py). The environment is a custom OpenAI environment which can found [here](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/RL/Quadratic_2D_env.py).
 

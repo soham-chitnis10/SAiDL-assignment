@@ -17,7 +17,7 @@ Total three reward functions were implemented:
 2. Exponent of the sum of the product of the difference of state from the minima and action along that directions. The Reward function is <img src = "images/reward_func_2.jpg">
 3. The reward function is given by <img src = "images/reward_func_3.jpg">
 
-To run the environment and agent run the ```main.py``` which can be found [here](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/RL/main.py). The environment is a custom OpenAI environment which can found [here](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/RL/Quadratic_2D_env.py).
+To run the environment and agent run the ```main.py``` which can be found [here](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/RL/main.py). The environment is a custom OpenAI environment for Quadratic 2D functions which can found [here](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/RL/Quadratic_2D_env.py).
 
 All three functions are also implemented in colab so colab notebooks can be found in the same [folder](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/RL)
 

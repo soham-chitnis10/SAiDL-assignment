@@ -21,7 +21,7 @@ To run the environment and agent run the ```main.py``` which can be found [here]
 
 All three functions are also implemented in colab so colab notebooks can be found in the same [folder](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/RL)
 
-The agent was trained for 3000 episodes for reward functions 1 and 3. The agent was tested for 1000 episodes. Reward function 2 could not be trained more than 1000 due to overflow in exponent ,therefore, testing was not conducted on reward function 2. A successful episode was defined as the absolute differnce of particular coordinate with that state is less than 0.1. The graphs of Inverse of the distance of the last state from minima was plotted against the episodes. The peak of the graph would indicate successful episodes.
+The agent was trained for 3000 episodes for reward functions 1 and 3. The agent was tested for 1000 episodes. Reward function 2 could not be trained more than 1000 due to overflow in exponent ,therefore, testing was not conducted on reward function 2. A successful episode is defined as the absolute differnce of particular coordinate with that state is less than 0.1. The graphs of Inverse of the distance of the last state from minima was plotted against the episodes. The peak of the graph would indicate successful episodes.
 
 Reward function 1: Successful Training Episodes: 18/3000 Successful Testing Episodes: 6/1000
 

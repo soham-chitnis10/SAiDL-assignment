@@ -11,10 +11,10 @@ from torch.distributions import Normal
 
 class REINFORCE:
     '''
-    Implementation of the basic online reinforce algorithm for Gaussian policies.
+    Implementation of the reinforce algorithm for Gaussian policies.
     '''
 
-    def __init__(self, num_inputs, hidden_size, action_space, lr_pi = 3e-4,gamma = 0.99):
+    def __init__(self, num_inputs, hidden_size, action_space, lr_pi = 1e-3,gamma = 0.99):
 
         self.gamma = gamma
         self.action_space = action_space
@@ -26,7 +26,7 @@ class REINFORCE:
 
         state = torch.from_numpy(state).float().unsqueeze(0) # just to make it a Tensor obj
         # get mean and std
-        mean, std = self.policy.forward(state)
+        mean, std = self.policy.forward(state) #MLP ouputs 4 dimensional vector where 2 for the mean and 2 for the standard deviation.
 
         # create normal distribution
         normal = Normal(mean, std)
@@ -47,14 +47,14 @@ class REINFORCE:
     def train(self, trajectory):
 
         '''
-        The training is done using the rewards-to-go formulation of the policy gradient update of Reinforce.
+        The training is done using the rewards-to-go formulation of the policy gradient with Gaussian Distribution for update of Reinforce.
         trajectory: a list of the form [( state , action , lnP(a_t|s_t), reward ), ...  ]
         '''
 
-        log_probs = [item[2] for item in trajectory]
-        rewards = [item[3] for item in trajectory]
         states = [item[0] for item in trajectory]
         actions = [item[1] for item in trajectory]
+        log_probs = [item[2] for item in trajectory]
+        rewards = [item[3] for item in trajectory]
 
 	#calculate rewards to go
         R = 0

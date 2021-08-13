@@ -1,3 +1,7 @@
+'''
+Impelementation of MLP for the policy gradient
+'''
+
 import torch
 from torch.autograd import Variable
 import torch.autograd as autograd
@@ -36,8 +40,8 @@ class Gaussian_Policy(nn.Module):
         x = F.relu(self.linear(x))
 
         mean = self.mean(x)
-        log_std = self.log_std(x) # if more than one action this will give you the diagonal elements of a diagonal covariance matrix
-        log_std = torch.clamp(log_std, min=LOG_SIG_MIN, max=LOG_SIG_MAX) # We limit the variance by forcing within a range of -2,20 as policy gradient has tendency of high variance
+        log_std = self.log_std(x)
+        log_std = torch.clamp(log_std, min=LOG_SIG_MIN, max=LOG_SIG_MAX) #We limit the variance by forcing within a range of -2,20 as policy gradient has tendency of high variance
         std = log_std.exp()
 
         return mean, std

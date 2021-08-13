@@ -98,7 +98,19 @@ class QuadraticEnv(Env):
         r_y = 0
       reward = r_x + r_y
       return reward
-    def start_time(self):
-        self.start = time.time()
-    def end_time(self):
-        self.end = time.time()
+    def reward_func_4(self,action):
+      '''
+      Reward function:
+      Depends on state as well as action
+      Reward is awarded as 0 when action is the opposite direction e.g x coordinate is supposed to increased to reach the minima but the action is to reduce the x cooordinate in that case reward is 0.
+      '''
+      if action[0][0]/(self.state[0]-self.x_min + 1e-9) > 0:
+        r_x = action[0][0]/(self.state[0]-self.x_min + 1e-9)
+      else:
+        r_x = 0
+      if action[0][1]/(self.state[1]-self.y_min + 1e-9) > 0:
+        r_y = action[0][1]/(self.state[1]-self.y_min + 1e-9)
+      else:
+        r_y = 0
+      reward = r_x + r_y
+      return reward

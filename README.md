@@ -44,8 +44,18 @@ Reward function 4: Successful Training Episodes: 9/3000 Successful Testing Episo
 Out of the four reward functions the most successful on training is Reward function 3 which has 28 successful training episodes but does not generalize that well while testing as only 6 episodes were successful which is same as Reward function 1. Reward function 4 did not yield as expected results.The graphs of all functions are present in their respective colab notebooks.
 
 ### Experiments
-As stated in the enviroment decription, that coefficents and coordinates have been limitted to small range therefore some experiments were carried out on the all three reward functions. Experiments invovled changing the length of episodes, providing larger ranges to coefficents and coordinates and changing hyperparameters of the policy gradient algorithm i.e learning rate, gamma value in reward-to-go and using more deeper neural networks. On conducting these experiments it can infered that none of three reward functions generalize that well on higher ranges. It was also observed that reults in section of Analysis of Reward functions is also not consistent.
+As stated in the enviroment decription, that coefficents and coordinates have been limited to small range therefore some experiments were carried out on the all three reward functions. Experiments invovled changing the length of episodes, providing larger ranges to coefficents and coordinates and changing hyperparameters of the policy gradient algorithm i.e learning rate, gamma value in reward-to-go and using more deeper neural networks. On conducting these experiments it can infered that none of three reward functions generalize that well on higher ranges. It was also observed that reults in section of Analysis of Reward functions is also not consistent.
 
 ## Computer Vision
 
-1. Supervised Learning: CNN architecture
+### Supervised Learning
+
+CNN architecture: Wide ResNet 101
+
+Epochs : 100
+
+Data Augmentation: Resized to 272 ,Random rotation at 15 degrees ,Random Crop to 256,Random Horizontal flip 
+
+After training for 100 epochs the test accuracy was 76.275 %
+
+Data Augmentation was performed to increase the test accuracy of the model.

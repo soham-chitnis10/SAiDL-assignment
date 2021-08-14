@@ -44,8 +44,8 @@ Reward function 4: Successful Training Episodes: 9/3000 Successful Testing Episo
 Out of the four reward functions the most successful on training is Reward function 3 which has 28 successful training episodes but does not generalize that well while testing as only 6 episodes were successful which is same as Reward function 1. Reward function 4 did not yield as expected results.The graphs of all functions are present in their respective colab notebooks.
 
 ### Experiments
-As stated in the enviroment decription, that coefficents and coordinates have been limitted to small range therefore some expeiments were carried out on the all three reward functions. Experiments invovled changing the length of episodes, providing larger ranges to coefficents and coordinates and chaning hyperparameters of the policy gradient i.e learning rate, gamma value in reward-to-go. These experiments were conducted. 
-#### Infernces of the experiments
-1. Reward function 3 is not consistent with results it shows during training and testing. It does not generalize well with more increase in the ranges.
+As stated in the enviroment decription, that coefficents and coordinates have been limitted to small range therefore some experiments were carried out on the all three reward functions. Experiments invovled changing the length of episodes, providing larger ranges to coefficents and coordinates and changing hyperparameters of the policy gradient algorithm i.e learning rate, gamma value in reward-to-go and using more deeper neural networks. On conducting these experiments it can infered that none of three reward functions generalize that well on higher ranges. It was also observed that reults in section of Analysis of Reward functions is also not consistent.
 
 ## Computer Vision
+
+1. Supervised Learning: CNN architecture

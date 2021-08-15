@@ -60,6 +60,8 @@ After training for 100 epochs the test accuracy was 76.275 %
 
 Data Augmentation was performed to increase the test accuracy of the model.
 
+[Notebook](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/Computer%20Vision/Supervised_Learning(Baseline).ipynb) for details
+
 ### Semi-Supervised Learning
 
 CNN architecture: ResNet 18
@@ -71,3 +73,5 @@ Data Augmentation was same as Supervsed Learning.
 Best test accuracy : 59.5000 % 
 
 Models for both of them can found [here](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/Computer%20Vision/models). Due to time constraint Psuedo labeling and Co-training was trained for 6 epochs.
+
+[Notebook](https://github.com/soham-chitnis10/SAiDL-assignment/blob/main/Computer%20Vision/Semi_Supervised_Learning.ipynb) for more details.

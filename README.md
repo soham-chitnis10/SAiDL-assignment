@@ -59,3 +59,15 @@ Data Augmentation: Resized to 272 ,Random rotation at 15 degrees ,Random Crop to
 After training for 100 epochs the test accuracy was 76.275 %
 
 Data Augmentation was performed to increase the test accuracy of the model.
+
+### Semi-Supervised Learning
+
+CNN architecture: ResNet 18
+
+Epochs: (Supervised) 100 (Pseudo labeling and Co-training) 6
+
+Data Augmentation was same as Supervsed Learning.
+
+Best test accuracy : 59.5000 % 
+
+Models for both of them can found [here](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/Computer%20Vision/models). Due to time constraint Psuedo labeling and Co-training was trained for 6 epochs.

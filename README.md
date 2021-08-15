@@ -5,6 +5,7 @@ The attempted sections are:
 
 1. [Reinforcement Learning](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/RL)
 2. [Computer Vision](https://github.com/soham-chitnis10/SAiDL-assignment/tree/main/Computer%20Vision)
+3. Research Question
 
 ## Reinforcement Learning
 ### Aim
